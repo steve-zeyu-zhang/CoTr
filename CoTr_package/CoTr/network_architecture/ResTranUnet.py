@@ -152,20 +152,28 @@ class U_ResTran3D(nn.Module):
         # Multi-scale   
         x = self.transposeconv_stage2(x_trans[:, x_fea[0].shape[-3]*x_fea[0].shape[-2]*x_fea[0].shape[-1]::].transpose(-1, -2).view(x_convs[-1].shape)) # x_trans length: 12*24*24+6*12*12=7776
         skip2 = x_trans[:, 0:x_fea[0].shape[-3]*x_fea[0].shape[-2]*x_fea[0].shape[-1]].transpose(-1, -2).view(x_convs[-2].shape)
-        
-        x = x + skip2
+        ######## This is only for BHSD
+        x = x + shapeFix(x, skip2)
+        ######## The following is the original
+        # x = x + skip2
         x = self.stage2_de(x)
         ds2 = self.ds2_cls_conv(x)
 
         x = self.transposeconv_stage1(x)
         skip1 = x_convs[-3]
-        x = x + skip1
+        ######## This is only for BHSD
+        x = x + shapeFix(x, skip1)
+        ######## The following is the original
+        # x = x + skip1
         x = self.stage1_de(x)
         ds1 = self.ds1_cls_conv(x)
 
         x = self.transposeconv_stage0(x)
         skip0 = x_convs[-4]
-        x = x + skip0
+        ######## This is only for BHSD
+        x = x + shapeFix(x, skip0)
+        ######## The following is the original
+        # x = x + skip0
         x = self.stage0_de(x)
         ds0 = self.ds0_cls_conv(x)
 
@@ -174,7 +182,29 @@ class U_ResTran3D(nn.Module):
         result = self.cls_conv(result)
 
         return [result, ds0, ds1, ds2]
+    
 
+##########################################################################
+
+def shapeFix(desired, input_tensor):
+    '''
+    This is only for the BHSD, please don't use it for any other dataset, thanks.
+    '''
+    desired_shape = tuple(desired.shape)
+
+    # Calculate the number of zeros to add in the 3rd dimension
+    num_zeros = desired_shape[2] - input_tensor.size(2)
+
+    # Generate the tensor with zeros to add
+    zeros_tensor = torch.zeros((desired_shape[0], desired_shape[1], num_zeros, desired_shape[3], desired_shape[4]), device=input_tensor.device)
+
+    # Concatenate the input tensor and zeros tensor along the 3rd dimension
+    output_tensor = torch.cat((input_tensor, zeros_tensor), dim=2)
+
+    return output_tensor
+
+
+##########################################################################################################################
 
 class ResTranUnet(SegmentationNetwork):
     """

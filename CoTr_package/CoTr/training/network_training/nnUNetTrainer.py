@@ -683,6 +683,25 @@ class nnUNetTrainer(NetworkTrainer):
             output_softmax = softmax_helper(output)
             output_seg = output_softmax.argmax(1)
             target = target[:, 0]
+
+
+############################################################# Only for BHSD
+############################################################# another shape issue
+        
+            # Specify the desired shape of the output tensor
+            desired_shape = tuple(output.shape)[:1] + tuple(output.shape)[2:]
+
+            # Calculate the number of zeros to add in the 3rd dimension
+            num_zeros = desired_shape[1] - target.size(1)
+
+            # Generate the tensor with zeros to add
+            zeros_tensor = torch.zeros((desired_shape[0], num_zeros, desired_shape[2], desired_shape[3]), device=target.device)
+
+            # Concatenate the input tensor and zeros tensor along the 3rd dimension
+            target = torch.cat((target, zeros_tensor), dim=1)
+
+############################################################## Only for BHSD
+
             axes = tuple(range(1, len(target.shape)))
             tp_hard = torch.zeros((target.shape[0], num_classes - 1)).to(output_seg.device.index)
             fp_hard = torch.zeros((target.shape[0], num_classes - 1)).to(output_seg.device.index)
