@@ -16,10 +16,27 @@ Torchvision 0.8.2<br />
 ## Usage
 
 ### 0. Installation
+
+
+<!-- 
+########################################################## This is commented out. ##################################################
+
 * Install Pytorch1.7, nnUNet and CoTr as below
   
 ```
 pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
+
+```
+
+########################################################## This is commented out. ##################################################
+-->
+#### Docker
+
+```
+docker pull stevezeyuzhang/unimiss:1.7.1
+```
+
+```
 
 cd nnUNet
 pip install -e .
@@ -27,6 +44,17 @@ pip install -e .
 cd CoTr_package
 pip install -e .
 ```
+
+```
+export nnUNet_raw_data_base="/code/CoTr/DATASET/nnUNet_raw" 
+
+export nnUNet_preprocessed="/code/CoTr/DATASET/nnUNet_preprocessed" 
+
+export RESULTS_FOLDER="/code/CoTr/DATASET/nnUNet_trained_models" 
+
+source /root/.bashrc 
+```
+
 
 ### 1. Data Preparation
 * Download [BCV dataset](https://www.synapse.org/#!Synapse:syn3193805/wiki/217789)

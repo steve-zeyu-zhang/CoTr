@@ -18,7 +18,7 @@ def main():
 
     parser.add_argument("-network", type=str, default='3d_fullres')
     parser.add_argument("-network_trainer", type=str, default='nnUNetTrainerV2_ResTrans')
-    parser.add_argument("-task", type=str, default='17', help="can be task name or task id")
+    parser.add_argument("-task", type=str, default='15', help="can be task name or task id")
     parser.add_argument("-fold", type=str, default='all', help='0, 1, ..., 5 or \'all\'')
     parser.add_argument("-outpath", type=str, default='Trainer_CoTr', help='output path')
     parser.add_argument("-norm_cfg", type=str, default='IN', help='BN, IN or GN')
