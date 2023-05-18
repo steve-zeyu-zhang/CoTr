@@ -59,9 +59,17 @@ source /root/.bashrc
 
 ### Fix
 
-[CoTr_package/CoTr/network_architecture/ResTranUnet.py Line](https://github.com/steve-zeyu-zhang/CoTr/blob/BHSD/CoTr_package/CoTr/network_architecture/ResTranUnet.py#L155-L158)
+[CoTr_package/CoTr/network_architecture/ResTranUnet.py#L155-L158](https://github.com/steve-zeyu-zhang/CoTr/blob/BHSD/CoTr_package/CoTr/network_architecture/ResTranUnet.py#L155-L158)
 
+[CoTr_package/CoTr/network_architecture/ResTranUnet.py#L164-L167](https://github.com/steve-zeyu-zhang/CoTr/blob/BHSD/CoTr_package/CoTr/network_architecture/ResTranUnet.py#L164-L167)
 
+[CoTr_package/CoTr/network_architecture/ResTranUnet.py#L173-L176](https://github.com/steve-zeyu-zhang/CoTr/blob/BHSD/CoTr_package/CoTr/network_architecture/ResTranUnet.py#L173-L176)
+
+[CoTr_package/CoTr/network_architecture/ResTranUnet.py#L187-L207](https://github.com/steve-zeyu-zhang/CoTr/blob/BHSD/CoTr_package/CoTr/network_architecture/ResTranUnet.py#L187-L207)
+
+[nnUNet/nnunet/training/loss_functions/crossentropy.py#L14-L29](https://github.com/steve-zeyu-zhang/CoTr/blob/BHSD/nnUNet/nnunet/training/loss_functions/crossentropy.py#L14-L29)
+
+[CoTr_package/CoTr/training/network_training/nnUNetTrainer.py#L688-L703](https://github.com/steve-zeyu-zhang/CoTr/blob/BHSD/CoTr_package/CoTr/training/network_training/nnUNetTrainer.py#L688-L703)
 
 
 
