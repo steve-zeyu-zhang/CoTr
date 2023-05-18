@@ -57,6 +57,13 @@ export RESULTS_FOLDER="/code/CoTr/DATASET/nnUNet_trained_models"
 source /root/.bashrc 
 ```
 
+### Fix
+
+[CoTr_package/CoTr/network_architecture/ResTranUnet.py Line](https://github.com/steve-zeyu-zhang/CoTr/blob/BHSD/CoTr_package/CoTr/network_architecture/ResTranUnet.py#L155-L158)
+
+
+
+
 
 ### 1. Data Preparation
 * Download [BCV dataset](https://www.synapse.org/#!Synapse:syn3193805/wiki/217789)
